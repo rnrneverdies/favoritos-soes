@@ -1,0 +1,85 @@
+* {
+  font-family: Segoe UI, Arial, Helvetica, sans-serif;
+}
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 90px;
+  padding: 20px;
+  color: white;
+}
+
+.App-header h1 {
+  font-size: 18px;
+  font-weight: normal;
+}
+
+.App-header h2 {
+  font-size: 14px;
+  font-weight: normal;
+}
+
+a {
+  color: white;
+}
+
+input {
+    background:rgba(0,0,0,0);
+    border:none;
+    font-size: 18px;
+    text-decoration: underline;
+}
+
+input:focus{
+    outline: none;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  line-height: 30px;
+}
+
+.star-off {
+  display: inline-block;
+  vertical-align: middle;
+  background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/img/sprites.svg?v=1b3cdae197be');
+  background-position: 0px -120px;
+  width: 30px;
+  height: 30px;
+}
+
+.star-on {
+  background-image: url('https://cdn.sstatic.net/Sites/stackoverflow/img/sprites.svg?v=1b3cdae197be');
+  background-position: -40px -120px;
+  width: 30px;
+  height: 30px;
+}
+
+@media (max-width: 440px) {
+  .App-header h1 {
+    font-size: 14px;
+    font-weight: normal;
+  }
+
+  .App-header h2 {
+    font-size: 12px;
+    font-weight: normal;
+  }
+}
