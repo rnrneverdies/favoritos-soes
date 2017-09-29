@@ -1,5 +1,5 @@
-# Ejemplo de colaborative filtering 
+# Ejemplo de colaborative filtering
 
-Training set: https://archive.org/download/stackexchange
+Este ejemplo esta basado en la tecnica de colaborative filtering presentada por Andrew Lee en su curso de Machine Learing presentado en Coursera.
 
-(WIP)
+El training set fue obtenido desde este sitio: https://archive.org/download/stackexchange

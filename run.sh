@@ -1,9 +1,9 @@
 #!/bin/bash
 
-SRC_PATH=meta.es.stackoverflow.com
+SRC_PATH=es.stackoverflow.com
 DST_PATH=tmp
-MINPOSTFAV=1
-MINUSERFAV=3
+MINPOSTFAV=3
+MINUSERFAV=5
 
 rm -rf $DST_PATH
 

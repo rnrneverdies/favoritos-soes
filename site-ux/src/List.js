@@ -17,7 +17,7 @@ export class List extends Component {
 export class Item extends Component {
   render() {
     return (
-      <li><span style={{ color: 'red' }}>{this.props.prediction}</span><span className="star-off" />{this.props.title}</li>
+      <li><span style={{ color: 'red' }}>{this.props.prediction}</span><span className="star-off" /><a href={'https://es.stackoverflow.com/q/' + this.props.id}>{this.props.title}</a></li>
     );
   }
 }

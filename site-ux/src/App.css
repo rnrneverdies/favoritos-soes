@@ -1,6 +1,7 @@
 * {
   font-family: Segoe UI, Arial, Helvetica, sans-serif;
 }
+
 .App {
   text-align: center;
 }
@@ -27,8 +28,12 @@
   font-weight: normal;
 }
 
-a {
+.App-header a {
   color: white;
+}
+
+.List a {
+  color: black;
 }
 
 input {

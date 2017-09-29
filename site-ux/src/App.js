@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { setUserId } from './Store';
-import { MainSite, MetaSite } from './data/Data';
+import { MainSite /*, MetaSite*/ } from './data/Data';
 import { List } from './List'
 import './App.css';
 import { bindActionCreators } from 'redux';
@@ -11,6 +11,16 @@ const users = MainSite.users;
 const predictions = MainSite.predictions;
 
 class App extends Component {
+
+  componentDidMount() {
+    try {
+      const user = parseInt(window.location.hash.toString().substring(1));
+      if (user) {
+        console.log('setting user to:' + user);
+        this.props.setUserId(user);
+      }
+    } catch (e) {}
+  }
 
   render() {
     const items = [];
@@ -25,35 +35,40 @@ class App extends Component {
     const userIndex = users.findIndex(u => u.id == userId);
     const user = users[userIndex];
     let userData = null;
-    console.log(user);
+    console.log('user', user);
     if (user) {
       userData = (
         <p>
           {user.displayname}, reputación: {user.rep}
         </p>
       );
-      
+
       const userPreditions = predictions[userIndex];
+      const p = userPreditions.map((v, ix) => ({ value: parseFloat(v), ix: ix }));
       console.log(userPreditions);
-      const p = userPreditions.map((v, ix) => { 
-          console.log(ix, parseFloat(v));
-          return { value: parseFloat(v), ix: ix };
-      });
       const x = p.slice().sort((a,b) => b.value - a.value);
       const r = x.map(i => Object.assign(posts[i.ix], { prediction: i.value.toFixed(3) }));
-      console.log(p, x, r);
-      items.push(...r.slice(0,25));
+      console.log(r);
+      items.push(...r.slice(0, 100));
+      window.location.hash = userId;
+    } else if (userId) {
+      const randomUser = users[Math.floor(Math.random() * users.length)];
+      userData = (
+          <p>
+            El usuario ha marcado menos de tres preguntas como favoritas o no existe un usuario con id {userId}. <a href="#" onClick={(e) => this.props.setUserId(randomUser.id)}>Ver un ejemplo</a>
+          </p>
+      )
     }
 
     return (
       <div className="App">
         <div className="App-header">
-          <h1>Recomendaciones - Stack Overflow en español</h1>
-          <h2>Un ejemplo de <a tabIndex="1" href="https://es.wikipedia.org/wiki/Filtrado_colaborativo">Collaborative Filtering</a> aplicado sobre las preguntas favoritas de los usuarios.</h2>
+          <h1>Recomendaciones / Favoritos de Stack Overflow en español</h1>
+          <h2>Esta app es un ejemplo de <a tabIndex="1" href="https://es.wikipedia.org/wiki/Filtrado_colaborativo">Collaborative Filtering</a> aplicado sobre las preguntas marcadas como favoritas por los usuarios de StackOverflow en Español. <a href="https://github.com/rnrneverdies/favoritos-soes">Fuentes en GitHub.</a></h2>
         </div>
         <p className="App-intro">
           Para comenzar, ingresa tu ID de usuario&nbsp;
-          <input type="text" size="6" tabIndex="0" autoFocus style={style} onChange={(e) => this.props.setUserId(e.target.value)} />
+          <input type="text" size="6" value={userId} tabIndex="0" autoFocus style={style} onInput={(e) => this.props.setUserId(e.target.value)} />
         </p>
         {userData}
         <List items={items} />
